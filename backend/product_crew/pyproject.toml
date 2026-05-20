@@ -1,0 +1,26 @@
+[project]
+name = "product_crew"
+version = "0.1.0"
+description = "CrewPilot — full plan crew (CrewAI)"
+authors = [{ name = "Your Name", email = "you@example.com" }]
+requires-python = ">=3.12,<3.13"
+dependencies = [
+    "crewai>=0.86.0",
+    "python-dotenv>=1.0.0",
+]
+
+[project.scripts]
+run_crew = "product_crew.main:run"
+product_crew = "product_crew.main:run"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.crewai]
+type = "crew"
+
+[tool.uv]
+override-dependencies = [
+    "onnxruntime>=1.20.0,<1.23.0",
+]

@@ -1,0 +1,50 @@
+# --- Python ---
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+.python-version
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.uv-cache/
+
+# --- Node ---
+node_modules/
+dist/
+build/
+*.log
+.vite/
+
+# --- Env ---
+.env
+.env.local
+.env.*.local
+!.env.example
+
+# --- Editor / OS ---
+.vscode/
+.idea/
+.DS_Store
+*.swp
+
+
+# --- product_crew (CrewAI) ---
+# Generated run artifacts (output_file in crew.py)
+backend/product_crew/output/
+
+# Default CrewAI scaffold output (if a task writes here)
+backend/product_crew/report.md
+
+# Local env + venv (also covered globally; explicit for this subproject)
+backend/product_crew/.env
+backend/product_crew/.venv/
+
+# CrewAI / memory / local caches (if enabled later)
+backend/product_crew/chroma/
+backend/product_crew/.chroma/
+backend/product_crew/storage/
+backend/product_crew/*.sqlite3
+backend/product_crew/training.json

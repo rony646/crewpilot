@@ -1,0 +1,74 @@
+product_task:
+  description: >
+    Analyze the following idea and produce a structured product definition.
+
+    Idea:
+    {idea}
+
+    Follow the output template exactly. Use Markdown level-2 headings (##) and
+    bullet points only—no long paragraphs. Be practical and MVP-focused.
+  expected_output: >
+    A single Markdown document with exactly these sections, in this order:
+
+    ## Idea summary
+    ## Value proposition
+    ## Target user
+    ## Core features
+    ## Problem being solved
+
+    Each section must contain bullet points only. No code blocks wrapping the
+    whole document.
+  agent: product_manager
+
+market_task:
+  description: >
+    Validate the following idea in a real-world market context.
+
+    Idea:
+    {idea}
+
+    Use the product definition from the previous task output in your context.
+    Do not contradict it without explaining why. Be direct and evidence-minded.
+
+    Follow the output template exactly. Use Markdown level-2 headings (##) and
+    bullet points only.
+  expected_output: >
+    A single Markdown document with exactly these sections, in this order:
+
+    ## Market context
+    ## Competitors
+    ## Target audience
+    ## Opportunities
+    ## Risks
+
+    Each section must contain bullet points only. Do not invent TAM, market size,
+    or growth percentages you cannot support.
+  agent: market_manager
+
+tech_task:
+  description: >
+    Produce a technical execution plan for the following idea.
+
+    Idea:
+    {idea}
+
+    Use the product definition and market analysis from the previous task
+    outputs in your context. Scope an MVP a small team could ship—do not design
+    a platform roadmap.
+
+    Follow the output template exactly. Use Markdown level-2 headings (##) and
+    bullet points only. Do not write code, file trees, or implementation snippets.
+  expected_output: >
+    A single Markdown document with exactly these sections, in this order:
+
+    ## Architecture
+    ## Technical features
+    ## System flow
+    ## MVP scope
+    ## Timeline estimation
+    ## Technical risks
+
+    Under Architecture, include bullet points for Frontend, Backend, and Database.
+    Timeline must use rough phases (e.g. weeks), not specific calendar dates.
+    Each section must contain bullet points only.
+  agent: tech_lead

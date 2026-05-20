@@ -1,0 +1,30 @@
+[project]
+name = "crewpilot-backend"
+version = "0.0.1"
+description = "CrewPilot backend — FastAPI + CrewAI."
+requires-python = ">=3.12,<3.13"
+
+dependencies = [
+    "fastapi>=0.115.0",
+    "uvicorn[standard]>=0.30.0",
+    "pydantic>=2.8.0",
+    "crewai>=0.86.0",
+    "python-dotenv>=1.0.0",
+]
+
+[dependency-groups]
+dev = [
+    "ruff>=0.6.0",
+]
+
+[tool.uv]
+# CrewAI pulls in chromadb → onnxruntime. onnxruntime 1.26.0 ships no macOS
+# arm64 wheels, breaking local dev on Apple Silicon. We don't use CrewAI's
+# memory features, so pin to a version range that has macOS arm64 wheels.
+override-dependencies = [
+    "onnxruntime>=1.20.0,<1.23.0",
+]
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
