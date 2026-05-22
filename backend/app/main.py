@@ -1,9 +1,7 @@
 """CrewPilot API entry point.
 
-Agent endpoints will live here, one per agent:
-    POST /agents/product   body: { idea }
-    POST /agents/market    body: { idea, product }
-    POST /agents/tech      body: { idea, product, market }
+Planned: POST /plan  body: { idea }  → full Product + Market + Tech plan
+         (via product_crew — import from app.crew import ProductCrew)
 """
 
 from __future__ import annotations
