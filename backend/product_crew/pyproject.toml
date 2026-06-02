@@ -17,8 +17,8 @@ product_crew = "product_crew.main:run"
 requires = ["hatchling"]
 build-backend = "hatchling.build"
 
-[tool.hatch.build.targets.wheel]
-packages = ["src/product_crew"]
+[tool.hatch.build]
+dev-mode-dirs = ["src"]
 
 [tool.crewai]
 type = "crew"

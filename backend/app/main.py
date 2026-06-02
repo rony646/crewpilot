@@ -7,7 +7,7 @@ Planned: POST /plan  body: { idea }  → full Product + Market + Tech plan
 from __future__ import annotations
 
 from dotenv import load_dotenv
-from fastapi import FastAPI
+from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 
 from app.plan_service import generate_plan
