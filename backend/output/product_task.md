@@ -1,30 +1,29 @@
 ## Idea summary
-- AI-powered tool integrated into team code review workflows
-- Automatically analyzes code for bugs before merging
-- Supports collaborative development by teams
-- Focus on pre-merge quality control and defect prevention
+- AI-powered tool integrated into code repositories for automated code review
+- Focus on early detection of bugs before code merge
+- Supports team collaboration by providing actionable feedback on pull requests
 
 ## Value proposition
-- Catches bugs earlier to reduce production issues
-- Saves developer time by automating part of code review
-- Improves code quality without slowing down merge process
-- Provides consistent and unbiased feedback on code changes
+- Reduces manual code review workload by highlighting potential bugs automatically
+- Improves code quality and reduces post-merge defects and rework
+- Accelerates development cycles by catching issues earlier in the workflow
+- Enhances team confidence in merged code correctness
 
 ## Target user
-- Software development teams using version control with pull/merge requests
-- Team leads and developers responsible for code review
-- Organizations aiming to improve code quality and reduce bugs
+- Small to medium-sized software development teams practicing pull request-based workflows
+- Engineering leads and developers responsible for code quality and reviews
+- Teams using common version control platforms (e.g., GitHub, GitLab, Bitbucket)
 
 ## Core features
-- Integration with common version control platforms (e.g., GitHub, GitLab)
-- AI-based static code analysis to detect potential bugs
-- Inline comments and suggestions within pull/merge request interface
-- Configurable rules and severity thresholds for bug detection
-- Summary report highlighting key issues before merge approval
-- Support for multi-language codebases in initial scope (focus on popular languages)
+- Automated scanning of pull request code diffs for common bug patterns and anti-patterns
+- AI-driven suggestions and explanations for detected issues
+- Integration with popular source control systems to comment directly on PRs
+- Prioritization of warnings by severity and confidence level
+- Support for multiple programming languages in the initial implementation
+- Ability for users to acknowledge, dismiss, or request explanations for flagged issues
 
 ## Problem being solved
-- Manual code reviews miss subtle bugs and inconsistencies
-- Time-consuming review process slows down development cycles
-- Inconsistent code quality due to varied reviewer expertise
-- Bugs introduced late increase cost and complexity of fixes
+- Manual code reviews miss subtle bugs or inconsistencies leading to defects in production
+- Code review processes can be time-consuming and inconsistent across team members
+- Late discovery of bugs causes delays and costly bug fixes
+- Lack of tooling that provides context-aware, automated, and scalable pre-merge bug detection
