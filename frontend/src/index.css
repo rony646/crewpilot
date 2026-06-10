@@ -195,3 +195,57 @@ body {
 .animate-fade-in-up {
   animation: fade-in-up 0.3s ease-out forwards;
 }
+
+/* Force readable light-theme colors while html2canvas captures for PDF export */
+.pdf-export {
+  background-color: #ffffff !important;
+  color: #111827 !important;
+  padding: 1.5rem;
+}
+
+.pdf-export h1,
+.pdf-export h2,
+.pdf-export h3,
+.pdf-export strong,
+.pdf-export th {
+  color: #111827 !important;
+}
+
+.pdf-export p,
+.pdf-export li,
+.pdf-export em,
+.pdf-export td {
+  color: #374151 !important;
+}
+
+.pdf-export code {
+  background-color: #f3f4f6 !important;
+  color: #111827 !important;
+}
+
+.pdf-export pre {
+  background-color: #f3f4f6 !important;
+  color: #111827 !important;
+  border-color: #e5e7eb !important;
+}
+
+.pdf-export blockquote {
+  background-color: #f9fafb !important;
+  border-color: #8b5cf6 !important;
+  color: #374151 !important;
+}
+
+.pdf-export hr,
+.pdf-export table,
+.pdf-export th,
+.pdf-export td {
+  border-color: #e5e7eb !important;
+}
+
+.pdf-export thead {
+  background-color: #f3f4f6 !important;
+}
+
+.pdf-export a {
+  color: #6366f1 !important;
+}

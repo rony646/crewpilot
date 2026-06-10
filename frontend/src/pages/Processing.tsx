@@ -4,14 +4,19 @@ import { PlanSuccess } from "@/components/processing/PlanSuccess";
 import { Button } from "@/components/ui/button";
 
 import { createPlan } from "@/lib/api/plan";
+import { usePlanStore } from "@/store/planStore";
 import { useQuery } from "@tanstack/react-query";
+import { useEffect } from "react";
 import { Navigate, useLocation, useNavigate } from "react-router-dom";
+
+const REDIRECT_DELAY_MS = 800;
 
 export function Processing() {
   const navigate = useNavigate();
   const { idea } = (useLocation().state as { idea?: string }) ?? {};
+  const addPlan = usePlanStore((state) => state.addPlan);
 
-  const { isError, isSuccess, error, refetch } = useQuery({
+  const { data, isError, isSuccess, error, refetch } = useQuery({
     queryKey: ["plan", idea],
     queryFn: ({ signal }) => createPlan({ idea: idea as string }, signal),
     enabled: !!idea,
@@ -21,6 +26,19 @@ export function Processing() {
     refetchOnWindowFocus: false,
     refetchOnReconnect: false,
   });
+
+  useEffect(() => {
+    if (!isSuccess || !data || !idea) return;
+
+    const id = crypto.randomUUID();
+    addPlan({ id, idea, results: data, createdAt: new Date().toISOString() });
+
+    const timeout = setTimeout(() => {
+      navigate(`/results/${id}`, { replace: true });
+    }, REDIRECT_DELAY_MS);
+
+    return () => clearTimeout(timeout);
+  }, [isSuccess, data, idea, addPlan, navigate]);
 
   if (!idea) {
     return <Navigate to="/" replace />;
