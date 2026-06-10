@@ -20,3 +20,10 @@ export interface PlanResponse {
   market: string;
   tech: string;
 }
+
+export interface StoredPlan {
+  id: string;
+  idea: string;
+  results: PlanResponse;
+  createdAt: string;
+}
