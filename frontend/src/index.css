@@ -143,6 +143,43 @@ body {
   animation: shimmer-bar 1.3s ease-in-out infinite;
 }
 
+/* Error mark: rounded X drawn/"mounted" in */
+@keyframes error-pop {
+  0% {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  60% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.animate-error-pop {
+  animation: error-pop 0.4s ease-out forwards;
+}
+
+@keyframes error-draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.animate-error-circle {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation: error-draw 0.5s ease-out forwards;
+}
+
+.animate-error-line {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation: error-draw 0.25s ease-out forwards;
+}
+
 /* Fade in animation for log lines */
 @keyframes fade-in-up {
   from {

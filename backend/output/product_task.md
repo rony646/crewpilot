@@ -1,29 +1,34 @@
-## Idea summary
-- AI-powered tool integrated into code repositories for automated code review
-- Focus on early detection of bugs before code merge
-- Supports team collaboration by providing actionable feedback on pull requests
+## Idea summary  
+- AI-powered tool that automates and augments the code review process  
+- Designed to assist software development teams in evaluating code changes  
+- Integrates into existing code hosting and version control platforms  
 
-## Value proposition
-- Reduces manual code review workload by highlighting potential bugs automatically
-- Improves code quality and reduces post-merge defects and rework
-- Accelerates development cycles by catching issues earlier in the workflow
-- Enhances team confidence in merged code correctness
+## Value proposition  
+- Speeds up code review by automatically identifying common issues and suggesting improvements  
+- Ensures consistent code quality standards across the team  
+- Reduces the cognitive load on human reviewers by highlighting critical concerns  
+- Enables teams to catch security vulnerabilities and style violations early  
+- Supports collaborative feedback without replacing the essential human judgement  
 
-## Target user
-- Small to medium-sized software development teams practicing pull request-based workflows
-- Engineering leads and developers responsible for code quality and reviews
-- Teams using common version control platforms (e.g., GitHub, GitLab, Bitbucket)
+## Target user  
+- Software development teams of small to medium size  
+- Engineering managers responsible for code quality and process efficiency  
+- Developers who perform peer code reviews regularly  
+- DevOps teams looking for integrated automated quality checks  
 
-## Core features
-- Automated scanning of pull request code diffs for common bug patterns and anti-patterns
-- AI-driven suggestions and explanations for detected issues
-- Integration with popular source control systems to comment directly on PRs
-- Prioritization of warnings by severity and confidence level
-- Support for multiple programming languages in the initial implementation
-- Ability for users to acknowledge, dismiss, or request explanations for flagged issues
+## Core features  
+- Automated analysis of pull requests and code diffs for bugs, style issues, and security risks  
+- Configurable rule sets and coding standards enforcement  
+- Inline commenting and suggestions within review interfaces  
+- Integration with popular code hosting (e.g., GitHub, GitLab, Bitbucket)  
+- Summary reports highlighting critical and common issues per review  
+- User roles and permissions to control review workflows  
+- Support for multiple programming languages relevant to target users  
 
-## Problem being solved
-- Manual code reviews miss subtle bugs or inconsistencies leading to defects in production
-- Code review processes can be time-consuming and inconsistent across team members
-- Late discovery of bugs causes delays and costly bug fixes
-- Lack of tooling that provides context-aware, automated, and scalable pre-merge bug detection
+## Problem being solved  
+- Manual code reviews are time-consuming and often inconsistent  
+- Common coding errors and style issues can be missed or delayed  
+- Code quality varies across reviewers and teams without standardization  
+- Security vulnerabilities are difficult to detect without automated checks  
+- Developers and reviewers face review fatigue and cognitive overload  
+- Coordination and feedback in distributed teams is inefficient without tooling assistance

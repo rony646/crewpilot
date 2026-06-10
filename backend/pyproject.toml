@@ -14,7 +14,7 @@ dependencies = [
 ]
 
 [tool.uv.sources]
-product-crew = { path = "product_crew", editable = true }
+product-crew = { path = "product_crew", editable = false }
 
 [dependency-groups]
 dev = [

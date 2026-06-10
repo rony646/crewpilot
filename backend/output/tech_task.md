@@ -1,97 +1,99 @@
 ## Architecture
 
 - **Frontend**
-  - Web dashboard embedded into popular repository platforms via browser extension or OAuth app
-  - UI components for displaying AI suggestions inline on pull request diffs and comment threads
-  - Interaction elements for acknowledging, dismissing, or requesting explanation on flagged issues
-  - Responsive design optimized for desktop IDE and browser environments used by developers
+  - React-based single-page application embedded as a browser extension or as a widget integrated directly into code hosting platforms' pull request UI (e.g., GitHub Actions or GitLab Webhooks UI)
+  - UI components for inline comments, suggestions, summary dashboards, and configuration settings
+  - Authentication via OAuth tokens scoped to code hosting platform API access
+  - Role-based UI elements tailored for developers, reviewers, and managers
 
 - **Backend**
-  - RESTful API server handling webhook events from repositories (PR opened/updated)
-  - Integration layer for GitHub, GitLab, Bitbucket APIs to retrieve code diffs and post review comments
-  - AI engine service running pre-trained ML and rule-based models for bug detection and scoring
-  - Prioritization module ranking warnings by severity and confidence
-  - User management and configuration service for team settings and language support
-  - Logging and audit trail for feedback interactions and flagged issues
+  - RESTful API server implemented using a proven framework (e.g., Express.js with Node.js or Python Flask/FastAPI)
+  - Integration modules to pull PR diffs and metadata via GitHub/GitLab/Bitbucket APIs using webhooks or polling
+  - AI-powered static analysis engine combining:
+    - Rule-based linters and static analyzers for multiple languages
+    - Lightweight AI models for pattern recognition built on open-source models or APIs (e.g., OpenAI Codex or local NLP models)
+    - Security scanning integrated through existing engines (e.g., bandit for Python, npm audit, or Snyk API)
+  - Results processing service to prioritize, aggregate, and format findings as review comments and summaries
+  - Config management service storing user/team rule sets and preferences
+  - Authentication and authorization middleware integrated with frontend tokens
 
 - **Database**
-  - Relational database (PostgreSQL) to store user/team data, PR metadata, flagged issues, and user responses
-  - Optional caching layer (Redis) for frequent AI query results or session state
-  - Storage for AI model metadata, versioning, and performance tracking
+  - Relational DB (PostgreSQL) to store:
+    - User profiles, roles, and permissions
+    - Team and project configurations and rule sets
+    - Audit logs of analysis results per PR and user feedback on suggestions
+    - Historical summary reports and analytics data
+  - Caching layer (Redis) optionally for performance on repeated analyses or config fetches
 
 ## Technical features
 
-- Pull request webhook handlers detecting PR creation and updates
-- Code diff extraction and normalization for analysis
-- AI-powered bug detection models combining static analysis heuristics and ML classifiers on code changes
-- Multi-language support in MVP: focus on JavaScript, Python, and Java (most common in target SMBs)
-- Inline annotation of PR comments with AI-identified issues and suggested fixes or explanations
-- Severity and confidence scoring for each detected issue, exposed in UI with filtering options
-- User feedback interface for acknowledging, dismissing, or requesting further explanation per warning
-- Secure OAuth integration with Git hosts for repository access, respecting least privileges
-- Audit logging of detection results and user actions for tracking and improvement
-- Basic team management for inviting users and configuring language/project settings
+- Support for analyzing diffs of pull/merge requests to detect bugs, style issues, and security vulnerabilities
+- Configurable rule sets including enabling/disabling rules, severity levels, and custom rule definitions
+- Inline code comments and suggestion annotations rendered in PR UI
+- Summary report of all detected issues with filtering by severity and category
+- Integration with GitHub, GitLab, and Bitbucket via webhooks and APIs for:
+  - Triggering analysis on PR events (open, update, comment)
+  - Posting review comments or status checks for pass/fail
+- User roles including Admin (manage configs, view reports), Reviewer (act on suggestions), Developer (view feedback)
+- Multi-language support targeting a prioritized list (e.g., JavaScript/TypeScript, Python, Java) in MVP
+- Simple onboarding with OAuth-based authentication and minimal setup
+- Ability to collect user feedback on suggestions to improve rule accuracy
 
 ## System flow
 
-- Developer pushes code and creates or updates a pull request in GitHub, GitLab, or Bitbucket
-- Repository platform sends webhook POST to backend with PR metadata and code changes
-- Backend fetches full code diff via API using OAuth token, normalizes input for AI engine consumption
-- AI engine processes code diff, runs language-specific models to detect bugs and assigns severity/confidence
-- Backend stores issues in database, ranks and filters alerts according to team preferences
-- Backend posts inline comments or summary review on the PR via the respective platform API
-- Developer views AI feedback directly on PR interface or via integrated dashboard
-- Developer interacts with feedback - acknowledging, dismissing, or requesting more detail
-- Backend logs user responses and monitors AI model accuracy for continuous improvement
-- Optional periodic batch process retrains or updates AI models using anonymized user feedback data
+- Developer opens or updates a pull request in integrated code hosting platform
+- Webhook triggers backend service to fetch diff and PR metadata
+- Backend analysis engine runs static analysis and AI-based checks on diff
+- Results are aggregated, filtered by configured rules, and ranked by severity
+- Backend posts inline comments and status checks back to PR via API
+- Frontend UI widget displays summary report and highlights inline comments within PR UI
+- Users interact with comments (resolve, reply) and adjust configurations as needed
+- Feedback data collected progressively to refine rules and AI models offline
 
 ## MVP scope
 
-- Support for 3 programming languages (JavaScript, Python, Java)
-- Integration with one popular source control platform at launch (GitHub recommended for widest adoption)
-- Core AI engine with baseline bug detection for common patterns and anti-patterns, combining static rules and ML
-- Web UI with inline PR comment display, dashboard for managing alerts and user feedback
-- OAuth authentication and webhook handling for one repo platform
-- Basic severity/confidence scoring and user interaction on detected issues
-- Essential database schema for user/team, PR state, issue tracking, and feedback logging
-- Logging and error handling suitable for developer troubleshooting
-- No advanced AI model retraining or complex multi-language pipeline in MVP
-- No support for on-premise installation, enterprise granularity, or security-specific checks in MVP
+- Basic integration with GitHub (due to largest user base and well-documented APIs)
+- Support for JavaScript/TypeScript and Python languages only initially
+- Core static analysis with established linters (ESLint, Pylint) augmented by lightweight AI model for common bug pattern detection
+- Security scanning limited to open-source tools with integration wrappers (e.g., bandit for Python)
+- Inline commenting on PR diffs and summary report dashboard accessible from a browser extension or embedded widget
+- User authentication via GitHub OAuth
+- Team configuration UI for enabling/disabling rules and setting severity thresholds
+- Role-based access control with Admin, Reviewer, Developer roles
+- Basic feedback mechanism (simple thumbs up/down on suggestions)
 
 ## Timeline estimation
 
-- **Week 1-2: Requirements refinement and architecture setup**
-  - Finalize API integration approach with GitHub (OAuth, webhooks)
-  - Setup backend skeleton, database schema, and dev environment
-  
-- **Week 3-4: Core backend development**
-  - Implement webhook listener, OAuth integration, code diff fetch workflow
-  - Prototype AI engine with simple heuristic and ML bug detection models for one language
-  
-- **Week 5-6: Frontend development**
-  - Build PR comment posting module and inline feedback UI components for GitHub
-  - Develop simple web dashboard for viewing and managing flagged issues
-  
-- **Week 7-8: Multi-language expansion & user interactions**
-  - Extend AI engine to support initial three languages with basic rules and classifiers
-  - Add user feedback actions (acknowledge, dismiss, request explanations)
-  
-- **Week 9: Testing and QA**
-  - Integration tests with GitHub API, performance tests of AI engine
-  - Usability testing of inline comments and dashboard
-  
-- **Week 10: MVP launch preparation**
-  - Documentation, deployment automation
-  - Initial user onboarding and feedback channels setup
+- **Weeks 1-2:**
+  - Setup project scaffolding: backend API, database schema, frontend basic UI framework
+  - Implement GitHub OAuth flow and webhook listener for PR events
+  - Integrate basic static analysis tools (ESLint, Pylint) to analyze diffs on backend
+- **Weeks 3-4:**
+  - Develop inline commenting and summary report generation and posting to GitHub PR
+  - Build frontend widget for displaying reports and comments, integrate with PR UI
+  - Implement user role and permission system in backend and frontend
+- **Weeks 5-6:**
+  - Add AI-based pattern detection module using a simple model or existing API
+  - Add security scanning integration for Python (bandit)
+  - Develop configuration UI for rule management and team settings
+- **Weeks 7-8:**
+  - Implement feedback collection UX and backend storage
+  - Testing, bug fixing, and internal user acceptance testing
+  - Deployment pipelines and documentation for onboarding
 
 ## Technical risks
 
-- AI model accuracy insufficient in detecting real-world bugs leading to false positives/negatives
-- Integration complexity due to evolving APIs or rate limiting on third-party platforms
-- Multi-language support complexity causing inconsistent or incomplete bug detection coverage
-- Latency caused by AI analysis delaying PR review workflows, frustrating users
-- User skepticism or resistance to automated feedback reducing adoption and active engagement
-- Security and permission risks in OAuth scopes compromising user repos or data privacy
-- Handling large PRs or repositories with complex codebases may stress backend or AI pipelines
-- Maintaining data consistency and synchronization between external PR state and internal database
-- Dependency on external API reliability impacting availability or responsiveness of the tool
+- **False positives and signal-to-noise ratio**
+  - Overly verbose or inaccurate AI suggestions may overwhelm users and reduce trust
+- **Integration complexity**
+  - Differences and changes in GitHub API or webhook format could disrupt analysis triggers or comment posting
+- **Context understanding**
+  - Static analysis may miss nuances requiring semantic understanding, leading to irrelevant suggestions
+- **Scalability**
+  - Performance of analysis on large PRs may lag; caching and incremental analysis may be required beyond MVP
+- **Security tool maturity**
+  - Reliance on existing open-source security tools limits coverage and confidence compared to dedicated security platforms
+- **User adoption**
+  - MVP feature set must balance value and intrusiveness to avoid user rejection or underuse
+- **Maintenance overhead**
+  - Supporting multiple languages and keeping up with evolving best practices demands ongoing effort after MVP release

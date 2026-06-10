@@ -21,7 +21,7 @@ export default function Landing() {
     if (!idea.trim()) return;
     console.log("idea", idea);
     // startAnalysis(idea.trim(), context.trim(), goal);
-    navigate("/processing");
+    navigate("/processing", { state: { idea: idea.trim() } });
   };
 
   const handleExampleSelect = (example: string) => {

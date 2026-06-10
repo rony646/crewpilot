@@ -25,7 +25,9 @@ build/
 !.env.example
 
 # --- Editor / OS ---
-.vscode/
+.vscode/*
+!.vscode/settings.json
+!.vscode/extensions.json
 .idea/
 .DS_Store
 *.swp
