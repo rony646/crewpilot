@@ -13,6 +13,19 @@ dependencies = [
     "product-crew",
 ]
 
+[project.scripts]
+dev = "app.cli:dev"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build]
+dev-mode-dirs = ["."]
+
+[tool.hatch.build.targets.wheel]
+packages = ["app"]
+
 [tool.uv.sources]
 product-crew = { path = "product_crew", editable = false }
 
