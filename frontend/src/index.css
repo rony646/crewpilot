@@ -249,3 +249,36 @@ body {
 .pdf-export a {
   color: #6366f1 !important;
 }
+
+/* Auth card 3D flip */
+.auth-flip-perspective {
+  perspective: 1200px;
+}
+
+.auth-flip-inner {
+  display: grid;
+  grid-template-areas: "stack";
+  transform-style: preserve-3d;
+  transition: transform 0.65s cubic-bezier(0.4, 0.2, 0.2, 1);
+}
+
+.auth-flip-inner.is-flipped {
+  transform: rotateY(180deg);
+}
+
+.auth-flip-face {
+  grid-area: stack;
+  width: 100%;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+.auth-flip-face-back {
+  transform: rotateY(180deg);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .auth-flip-inner {
+    transition: none;
+  }
+}

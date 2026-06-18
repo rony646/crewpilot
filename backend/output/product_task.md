@@ -1,29 +1,34 @@
 ## Idea summary
-- AI-assisted code review platform designed specifically for software development teams
-- Automates initial code quality checks to speed up review cycles
-- Provides actionable feedback to improve code consistency and reduce errors
+- Monthly subscription box delivering curated sustainable and eco-friendly products
+- Selection includes personal care, household items, and lifestyle goods
+- Focus on introducing users to new, vetted sustainable brands and products
+- Convenient, regular delivery to encourage sustainable consumption habits
 
 ## Value proposition
-- Accelerates the code review process by highlighting potential issues automatically
-- Ensures consistent application of coding standards across the team
-- Reduces manual review workload, allowing engineers to focus on complex feedback
-- Improves code quality and maintainability before merging
+- Simplifies discovery of trustworthy sustainable products
+- Supports environmentally responsible purchasing decisions
+- Encourages adoption of sustainable lifestyle choices through regular use
+- Curated to reduce research time and uncertainty about product quality and impact
+- Provides an easy entry point for users new to sustainable living
 
 ## Target user
-- Software development teams in startups and small to medium enterprises
-- Engineering managers overseeing code quality and team productivity
-- Individual developers seeking faster, more structured code reviews within a team setting
+- Environmentally conscious consumers seeking to reduce ecological footprint
+- Individuals curious about adopting more sustainable habits but unsure where to start
+- Busy professionals wanting curated convenience without extensive product research
+- Gift buyers looking for meaningful, eco-friendly presents
+- Early adopters of sustainable living trends
 
 ## Core features
-- AI-driven analysis detecting common bugs, security vulnerabilities, and style violations
-- Integration with popular version control systems (e.g., GitHub, GitLab)
-- Inline comments and suggestions directly within pull/merge requests
-- Customizable rule sets for coding standards and project-specific guidelines
-- Summary reports highlighting critical issues and overall code health
-- Support for multiple programming languages at launch, prioritizing most used in target teams
+- Subscription management interface (sign up, pause, cancel, frequency options)
+- Monthly box containing 4-6 sustainable products curated by experts
+- Product information card explaining sustainability benefits and usage tips
+- Option for user feedback and preferences to improve personalization
+- Sustainable packaging with minimal environmental impact
+- Basic user profile to tailor products based on stated interests or values
 
 ## Problem being solved
-- Time-consuming and inconsistent manual code reviews delaying development cycles
-- Variability in review quality due to differing experience levels among team members
-- Difficulty enforcing coding standards and catching common errors before code merges
-- Inefficiencies in distributed or remote teams lacking centralized review feedback mechanisms
+- Difficulty finding reliable, genuinely sustainable products in a crowded market
+- Overwhelm from variety and lack of clear information about product impact
+- Lack of convenient, regular access to sustainable goods
+- Barrier to entry for users unfamiliar with sustainable brands or practices
+- Time-consuming research and evaluation of products for sustainability credentials

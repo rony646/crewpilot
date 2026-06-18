@@ -14,6 +14,9 @@ export function History() {
   const [searchQuery, setSearchQuery] = useState("");
 
   const plansMap = usePlanStore((state) => state.plans);
+  const loading = usePlanStore((state) => state.loading);
+  const hydrated = usePlanStore((state) => state.hydrated);
+  const error = usePlanStore((state) => state.error);
 
   const plans = useMemo(
     () =>
@@ -71,7 +74,13 @@ export function History() {
           </div>
         )}
 
-        {filteredPlans.length > 0 ? (
+        {error && (
+          <p className="mb-6 text-sm text-error">{error}</p>
+        )}
+
+        {loading || !hydrated ? (
+          <p className="text-text-secondary">Loading your history…</p>
+        ) : filteredPlans.length > 0 ? (
           <div className="space-y-3 ">
             {filteredPlans.map((plan) => (
               <Card

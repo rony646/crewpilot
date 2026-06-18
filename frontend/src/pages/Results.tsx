@@ -33,12 +33,23 @@ export function Results() {
   const contentRef = useRef<HTMLDivElement>(null);
 
   const plan = usePlanStore((state) => (id ? state.plans[id] : undefined));
+  const hydrated = usePlanStore((state) => state.hydrated);
+  const loading = usePlanStore((state) => state.loading);
 
   useEffect(() => {
+    if (!hydrated || loading) return;
     if (!plan) {
       navigate("/");
     }
-  }, [plan, navigate]);
+  }, [plan, hydrated, loading, navigate]);
+
+  if (!hydrated || loading) {
+    return null;
+  }
+
+  if (!plan) {
+    return null;
+  }
 
   useEffect(() => {
     if (!plan) return;
@@ -63,10 +74,6 @@ export function Results() {
 
     setSections(headings);
   }, [plan, activeTab]);
-
-  if (!plan) {
-    return null;
-  }
 
   const tabs: { id: Tab; label: string }[] = [
     { id: "product", label: "Product" },

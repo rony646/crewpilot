@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import { createPlan } from "@/lib/api/plan";
 import { usePlanStore } from "@/store/planStore";
 import { useQuery } from "@tanstack/react-query";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Navigate, useLocation, useNavigate } from "react-router-dom";
 
 const REDIRECT_DELAY_MS = 800;
@@ -15,6 +15,8 @@ export function Processing() {
   const navigate = useNavigate();
   const { idea } = (useLocation().state as { idea?: string }) ?? {};
   const addPlan = usePlanStore((state) => state.addPlan);
+  const [saveError, setSaveError] = useState<string | null>(null);
+  const [saveAttempt, setSaveAttempt] = useState(0);
 
   const { data, isError, isSuccess, error, refetch } = useQuery({
     queryKey: ["plan", idea],
@@ -30,15 +32,29 @@ export function Processing() {
   useEffect(() => {
     if (!isSuccess || !data || !idea) return;
 
-    const id = crypto.randomUUID();
-    addPlan({ id, idea, results: data, createdAt: new Date().toISOString() });
+    let cancelled = false;
+    let timeout: ReturnType<typeof setTimeout>;
 
-    const timeout = setTimeout(() => {
-      navigate(`/results/${id}`, { replace: true });
-    }, REDIRECT_DELAY_MS);
+    void (async () => {
+      try {
+        setSaveError(null);
+        const plan = await addPlan({ idea, results: data });
+        if (cancelled) return;
 
-    return () => clearTimeout(timeout);
-  }, [isSuccess, data, idea, addPlan, navigate]);
+        timeout = setTimeout(() => {
+          navigate(`/results/${plan.id}`, { replace: true });
+        }, REDIRECT_DELAY_MS);
+      } catch (err) {
+        if (cancelled) return;
+        setSaveError(err instanceof Error ? err.message : "Failed to save plan.");
+      }
+    })();
+
+    return () => {
+      cancelled = true;
+      clearTimeout(timeout);
+    };
+  }, [isSuccess, data, idea, addPlan, navigate, saveAttempt]);
 
   if (!idea) {
     return <Navigate to="/" replace />;
@@ -52,11 +68,18 @@ export function Processing() {
     refetch();
   };
 
+  const handleRetrySave = () => {
+    setSaveError(null);
+    setSaveAttempt((attempt) => attempt + 1);
+  };
+
   const statusMessage = isError
     ? "Analysis failed"
-    : isSuccess
-      ? "Analysis complete"
-      : "Running analysis...";
+    : saveError
+      ? "Failed to save plan"
+      : isSuccess
+        ? "Analysis complete"
+        : "Running analysis...";
 
   return (
     <main className="min-h-[calc(100vh-3.5rem)]">
@@ -81,8 +104,11 @@ export function Processing() {
         </div>
 
         <div className="grid gap-8 lg:grid-cols-[100%_1fr]">
-          {isError ? (
-            <PlanError message={error?.message} onRetry={handleRetry} />
+          {isError || saveError ? (
+            <PlanError
+              message={saveError ?? error?.message}
+              onRetry={saveError ? handleRetrySave : handleRetry}
+            />
           ) : isSuccess ? (
             <PlanSuccess />
           ) : (
