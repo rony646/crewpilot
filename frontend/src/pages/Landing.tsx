@@ -6,16 +6,11 @@ import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { ExampleChips } from "@/components/landing/ExampleChips";
 
-type GoalType = "full" | "product" | "market" | "tech";
-
 export default function Landing() {
   const navigate = useNavigate();
   // const startAnalysis = useAnalysisStore((state) => state.startAnalysis);
 
   const [idea, setIdea] = useState("");
-  const [context, setContext] = useState("");
-  const [goal, setGoal] = useState<GoalType>("full");
-  const [showContext, setShowContext] = useState(false);
 
   const handleSubmit = () => {
     if (!idea.trim()) return;
