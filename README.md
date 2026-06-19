@@ -48,6 +48,35 @@ Open `http://localhost:5173`.
 
 ## Deployment
 
+- **Frontend (Vercel):** https://crewpilot-nine.vercel.app
+- **Backend (Render):** https://crewpilot-nwm0.onrender.com
+
+### Frontend (Vercel)
+
+The frontend is deployed on [Vercel](https://vercel.com) as a static Vite build:
+
+- **Live URL:** https://crewpilot-nine.vercel.app
+
+Vercel configuration:
+
+| Setting | Value |
+|---|---|
+| Root Directory | `frontend` |
+| Framework Preset | Vite |
+| Build Command | `npm run build` |
+| Output Directory | `dist` |
+
+Required environment variables on Vercel (set before build — `VITE_*` vars are
+embedded at build time):
+
+- `VITE_API_URL` — backend API URL (the Render URL above)
+- `VITE_SUPABASE_URL` — Supabase project URL
+- `VITE_SUPABASE_PUBLISHABLE_KEY` — Supabase publishable/anon key
+
+> SPA routing (e.g. `/results/:id`, `/history`) is handled by
+> `frontend/vercel.json`, which rewrites all paths to `index.html` so deep
+> links and refreshes don't 404.
+
 ### Backend (Render)
 
 The backend is deployed on [Render](https://render.com) as a web service:
