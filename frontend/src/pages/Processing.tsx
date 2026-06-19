@@ -9,7 +9,7 @@ import { useQuery } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
 import { Navigate, useLocation, useNavigate } from "react-router-dom";
 
-const REDIRECT_DELAY_MS = 800;
+const REDIRECT_DELAY_MS = 1500;
 
 export function Processing() {
   const navigate = useNavigate();
