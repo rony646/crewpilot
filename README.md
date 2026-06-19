@@ -24,9 +24,15 @@ crewpilot/
 
 ```bash
 cd backend
-uv sync --no-editable
+uv sync
 cp .env.example .env  # then fill in OPENAI_API_KEY
 uv run dev
+```
+
+If `uv run dev` fails, run the server directly:
+
+```bash
+uv run uvicorn app.main:app --host 127.0.0.1 --port 8000 --reload
 ```
 
 ### Frontend

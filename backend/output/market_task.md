@@ -1,36 +1,38 @@
 ## Market context
-- Growing consumer interest in sustainability and eco-friendly lifestyles, particularly among Millennials and Gen Z.
-- Increasing availability of sustainable products, but buyers often face skepticism about greenwashing and product authenticity.
-- Subscription boxes have proven success as a model for product discovery and convenience but saturation may be high in some verticals.
-- E-commerce and home delivery services have normalized recurring shipments, but customer retention depends on perceived value and novelty.
-- Regulatory pressure and corporate commitments to sustainability may increase supply availability over time but also consumer expectations.
+- Bus transportation remains a critical mode of intercity and regional travel in many countries, especially outside major metro areas.
+- Traditional bus companies often have limited digital presence and rely on physical stations or third-party agencies for ticket sales.
+- Emerging digital platforms enable better seat utilization by aggregating supply from multiple smaller operators.
+- Regulatory environments regarding ticketing, safety, and operator registration vary by region and can impact platform scalability.
+- Consumer demand trends include preference for convenience, mobile ticketing, and transparent pricing.
+- Market fragmentation exists with many small bus operators lacking technology for direct consumer sales.
 
 ## Competitors
-- Eco-conscious subscription box brands like Earthlove, MightyNest, and Love Goodly targeting similar customer segments.
-- Mainstream subscription boxes that include sustainable items occasionally but are not solely focused on eco-friendly products (e.g., FabFitFun with some green options).
-- Direct-to-consumer sustainable brands selling individual products with subscription options (e.g., Blueland, Grove Collaborative).
-- Retailers and marketplaces specializing in sustainable goods (e.g., Package Free Shop) offering curated selections without a subscription model.
-- General product discovery platforms (like Amazon’s “Subscribe & Save”) with sustainability filters but less curation and storytelling.
+- Buser: A major player in Brazil with a similar peer-to-peer bus booking model connecting bus companies and passengers.
+- ClickBus: Online bus tickets aggregator selling tickets for established carriers, sometimes with own fleet partnerships.
+- Rodoviária app systems: State or regional digital platforms supporting traditional bus lines, less flexible on new routes.
+- Other ride-sharing or transport marketplaces (e.g., BlaBlaBus in Europe) focused on bus or intercity transport.
+- Individual bus companies owning direct sales apps or partnerships with travel agencies.
 
 ## Target audience
-- Environmentally conscious consumers actively seeking ways to reduce their ecological footprint.
-- Individuals new to sustainability, seeking guidance and easy entry points.
-- Busy professionals who appreciate convenience and trust expert curation to reduce decision fatigue.
-- Gift buyers looking for meaningful, purposeful presents that align with values.
-- Early adopters and trendsetters in the sustainable lifestyle movement.
+- Bus companies and small fleet operators looking to increase revenue through better seat fill rates.
+- Passengers seeking affordable and flexible bus travel options beyond traditional operators’ fixed routes.
+- Travelers comfortable booking travel digitally on mobile or desktop, including price-sensitive and convenience seekers.
+- Regions with less developed digital ticketing infrastructure or underserved routes.
+- Potentially daily commuters on intercity routes if network growth allows.
 
 ## Opportunities
-- Addressing the trust gap by vetting genuine sustainable products, helping consumers avoid greenwashed claims.
-- Providing education and storytelling about product impact, which can increase customer engagement and loyalty.
-- Leveraging personalization to align products with customer values and preferences, increasing perceived relevance.
-- Building community features or social proof (not in current definition) could enhance retention and referrals.
-- Partnering with emerging sustainable brands to introduce exclusive or early-access items, creating differentiation.
-- Capturing convenience-seeking consumers who lack time or knowledge to research sustainable options on their own.
+- Untapped or underutilized bus operator capacity can be monetized without capital investment in fleets.
+- Growing preference for digital travel booking creates demand gaps in traditional bus ticketing.
+- Ability to aggregate diverse operators can unlock new routes and improve regional connectivity.
+- Platform can scale quickly by onboarding multiple operators without vehicle ownership overhead.
+- Dynamic pricing and rating systems can improve passenger trust and operator accountability.
+- Partnership opportunities with payment providers, local transport authorities, and travel platforms.
 
 ## Risks
-- Market saturation with multiple competing subscription boxes, potentially leading to customer churn and price sensitivity.
-- Difficulty in consistently sourcing high-quality, genuinely sustainable products at scale and on a regular basis.
-- Risk of consumer skepticism about subscription box value versus cost, especially if products are sample sized or lack perceived uniqueness.
-- Potential logistical challenges and costs related to sustainable packaging and fulfillment that could reduce margins.
-- Changing sustainability standards and certifications could complicate curation and require continuous vetting.
-- Customer fatigue from receiving similar types of products over time might decrease retention without strong personalization or product variety.
+- Regulatory hurdles in licensing, insurance, and safety standards may slow operator onboarding or geographic expansion.
+- Quality control and reliability issues if platform cannot enforce consistent service standards.
+- Operators may resist revenue-sharing models or limit routes available on the platform.
+- Competition from incumbents with more established brands or regulatory relationships.
+- Customer trust challenges in early stages if booking/payment/ticketing processes or support are weak.
+- Network effects may take time to build; insufficient routes or operators initially could reduce passenger interest.
+- Payment fraud or disputes could damage platform reputation without strong fraud prevention mechanisms.

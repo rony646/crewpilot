@@ -1,6 +1,6 @@
 import { useMemo, useState } from "react";
 
-import { Link, Plus, Search } from "lucide-react";
+import { Link, Plus, Search, ArrowLeft } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
 import { Input } from "@/components/ui/input";
@@ -52,11 +52,19 @@ export function History() {
     return `${date.toLocaleDateString()} · ${date.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })}`;
   };
 
+  const handleGoBack = (): void => {
+    navigate("/");
+  };
+
   return (
     <main className="min-h-screen bg-background">
       <div className="max-w-5xl mx-auto px-6 py-8">
         <div className="mb-8">
-          <h1 className="text-3xl font-medium mb-2">History</h1>
+          <div className="flex items-center gap-2">
+            <ArrowLeft className="w-6 h-6 cursor-pointer" role="button" onClick={handleGoBack} />
+            <h1 className="text-3xl font-medium mb-2">History</h1>
+          </div>
+
           <p className="text-text-secondary">View and manage your previous analyses</p>
         </div>
 
@@ -74,9 +82,7 @@ export function History() {
           </div>
         )}
 
-        {error && (
-          <p className="mb-6 text-sm text-error">{error}</p>
-        )}
+        {error && <p className="mb-6 text-sm text-error">{error}</p>}
 
         {loading || !hydrated ? (
           <p className="text-text-secondary">Loading your history…</p>

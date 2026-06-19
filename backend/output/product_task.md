@@ -1,34 +1,35 @@
 ## Idea summary
-- Monthly subscription box delivering curated sustainable and eco-friendly products
-- Selection includes personal care, household items, and lifestyle goods
-- Focus on introducing users to new, vetted sustainable brands and products
-- Convenient, regular delivery to encourage sustainable consumption habits
+- A bus transportation app that does not own buses directly
+- Bus companies with their own fleets can register on the platform
+- Registered companies create and offer their own routes through the app
+- Platform acts as a marketplace connecting passengers and bus operators
+- Similar concept to Buser, focusing on collaborative route and seat sharing
 
 ## Value proposition
-- Simplifies discovery of trustworthy sustainable products
-- Supports environmentally responsible purchasing decisions
-- Encourages adoption of sustainable lifestyle choices through regular use
-- Curated to reduce research time and uncertainty about product quality and impact
-- Provides an easy entry point for users new to sustainable living
+- Enables bus companies to monetize empty seats and routes efficiently
+- Provides travelers with more route options and potentially lower prices
+- Simplifies booking and ticketing through a single app interface
+- Creates a scalable platform without the need for heavy bus fleet investment
+- Increases bus operators’ visibility and customer reach
 
 ## Target user
-- Environmentally conscious consumers seeking to reduce ecological footprint
-- Individuals curious about adopting more sustainable habits but unsure where to start
-- Busy professionals wanting curated convenience without extensive product research
-- Gift buyers looking for meaningful, eco-friendly presents
-- Early adopters of sustainable living trends
+- Bus companies or operators with available vehicle fleets looking for more customers
+- Passengers seeking affordable, convenient intercity or regional bus travel
+- Users looking for alternative bus routes unavailable in traditional services
+- Travelers wanting to book bus tickets easily via mobile or web app
 
 ## Core features
-- Subscription management interface (sign up, pause, cancel, frequency options)
-- Monthly box containing 4-6 sustainable products curated by experts
-- Product information card explaining sustainability benefits and usage tips
-- Option for user feedback and preferences to improve personalization
-- Sustainable packaging with minimal environmental impact
-- Basic user profile to tailor products based on stated interests or values
+- Bus company registration and profile management
+- Route creation and schedule management by bus companies
+- Seat inventory management and dynamic pricing option
+- User-friendly bus ticket search and booking interface
+- Payment processing and ticketing system (digital tickets)
+- Ratings and reviews for bus companies and routes
+- Basic customer support and dispute resolution workflow
 
 ## Problem being solved
-- Difficulty finding reliable, genuinely sustainable products in a crowded market
-- Overwhelm from variety and lack of clear information about product impact
-- Lack of convenient, regular access to sustainable goods
-- Barrier to entry for users unfamiliar with sustainable brands or practices
-- Time-consuming research and evaluation of products for sustainability credentials
+- Lack of efficient platform for bus companies to share surplus capacity
+- Limited bus route options for travelers in certain regions
+- Inefficiencies and overhead in traditional bus ticketing processes
+- High barrier to entry for bus companies to reach new customers online
+- Fragmented market of bus operators leading to underutilized buses and lost revenue
