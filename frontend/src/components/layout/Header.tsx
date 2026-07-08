@@ -33,7 +33,7 @@ export function Header() {
           {user && (
             <div
               className="flex h-8 w-8 items-center justify-center rounded-full bg-gradient-to-br from-primary to-accent text-xs font-medium text-white"
-              title={displayName || user.email}
+              title={displayName || user.email || undefined}
               aria-label={displayName ? `Signed in as ${displayName}` : "Signed in"}
             >
               {initials}

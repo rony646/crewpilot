@@ -1,72 +1,79 @@
-import { supabase } from "@/lib/supabase";
+import {
+  addDoc,
+  collection,
+  getDoc,
+  getDocs,
+  query,
+  serverTimestamp,
+  where,
+} from "firebase/firestore";
+
+import { auth, db } from "@/lib/firebase";
 import type { PlanResponse, StoredPlan } from "@/types";
 
-interface PlanRow {
-  id: string;
-  user_id: string;
+interface PlanDoc {
+  userId: string;
   idea: string;
   product: string;
   market: string;
   tech: string;
-  created_at: string;
+  createdAt: { toDate: () => Date };
 }
 
-function rowToStoredPlan(row: PlanRow): StoredPlan {
+function docToStoredPlan(id: string, data: PlanDoc): StoredPlan {
   return {
-    id: row.id,
-    idea: row.idea,
+    id,
+    idea: data.idea,
     results: {
-      product: row.product,
-      market: row.market,
-      tech: row.tech,
+      product: data.product,
+      market: data.market,
+      tech: data.tech,
     },
-    createdAt: row.created_at,
+    createdAt: data.createdAt.toDate().toISOString(),
   };
 }
 
 export async function fetchPlansForCurrentUser(): Promise<StoredPlan[]> {
-  const {
-    data: { user },
-    error: authError,
-  } = await supabase.auth.getUser();
-
-  if (authError) throw authError;
+  const user = auth.currentUser;
   if (!user) return [];
 
-  const { data, error } = await supabase
-    .from("plans")
-    .select("id, user_id, idea, product, market, tech, created_at")
-    .eq("user_id", user.id)
-    .order("created_at", { ascending: false });
+  const plansQuery = query(collection(db, "plans"), where("userId", "==", user.uid));
 
-  if (error) throw error;
-  return (data as PlanRow[]).map(rowToStoredPlan);
+  const snapshot = await getDocs(plansQuery);
+  const plans = snapshot.docs.map((doc) => docToStoredPlan(doc.id, doc.data() as PlanDoc));
+
+  return plans.sort(
+    (a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+  );
 }
 
 export async function insertPlanForCurrentUser(
   idea: string,
   results: PlanResponse
 ): Promise<StoredPlan> {
-  const {
-    data: { user },
-    error: authError,
-  } = await supabase.auth.getUser();
-
-  if (authError) throw authError;
+  const user = auth.currentUser;
   if (!user) throw new Error("You must be signed in to save a plan.");
 
-  const { data, error } = await supabase
-    .from("plans")
-    .insert({
-      user_id: user.id,
-      idea,
-      product: results.product,
-      market: results.market,
-      tech: results.tech,
-    })
-    .select("id, user_id, idea, product, market, tech, created_at")
-    .single();
+  const docRef = await addDoc(collection(db, "plans"), {
+    userId: user.uid,
+    idea,
+    product: results.product,
+    market: results.market,
+    tech: results.tech,
+    createdAt: serverTimestamp(),
+  });
 
-  if (error) throw error;
-  return rowToStoredPlan(data as PlanRow);
+  const snapshot = await getDoc(docRef);
+  const created = snapshot.data() as PlanDoc | undefined;
+
+  if (created?.createdAt) {
+    return docToStoredPlan(docRef.id, created);
+  }
+
+  return {
+    id: docRef.id,
+    idea,
+    results,
+    createdAt: new Date().toISOString(),
+  };
 }
