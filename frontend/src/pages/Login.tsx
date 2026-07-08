@@ -4,8 +4,14 @@ import { useNavigate, useLocation } from "react-router-dom";
 import { Logo } from "@/components/Logo";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { displayNameMetadata, getDisplayName, validateDisplayName } from "@/lib/auth";
-import { supabase } from "@/lib/supabase";
+import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  updateProfile,
+} from "firebase/auth";
+
+import { getDisplayName, validateDisplayName } from "@/lib/auth";
+import { auth } from "@/lib/firebase";
 
 type AuthMode = "sign-in" | "sign-up";
 
@@ -267,12 +273,8 @@ export function Login() {
     setMessage(null);
   };
 
-  const requireDisplayNameOrContinue = async () => {
-    const {
-      data: { user },
-    } = await supabase.auth.getUser();
-
-    if (!getDisplayName(user)) {
+  const requireDisplayNameOrContinue = () => {
+    if (!getDisplayName(auth.currentUser)) {
       setNeedsDisplayName(true);
       return;
     }
@@ -293,10 +295,13 @@ export function Login() {
     setLoading(true);
 
     try {
-      const { error: updateError } = await supabase.auth.updateUser({
-        data: displayNameMetadata(displayName),
+      if (!auth.currentUser) {
+        throw new Error("You must be signed in to set a display name.");
+      }
+
+      await updateProfile(auth.currentUser, {
+        displayName: displayName.trim(),
       });
-      if (updateError) throw updateError;
 
       setNeedsDisplayName(false);
       redirectAfterAuth();
@@ -315,12 +320,8 @@ export function Login() {
 
     try {
       if (mode === "sign-in") {
-        const { error: signInError } = await supabase.auth.signInWithPassword({
-          email,
-          password,
-        });
-        if (signInError) throw signInError;
-        await requireDisplayNameOrContinue();
+        await signInWithEmailAndPassword(auth, email, password);
+        requireDisplayNameOrContinue();
         return;
       }
 
@@ -330,22 +331,9 @@ export function Login() {
         return;
       }
 
-      const { data, error: signUpError } = await supabase.auth.signUp({
-        email,
-        password,
-        options: {
-          data: displayNameMetadata(displayName),
-        },
-      });
-      if (signUpError) throw signUpError;
-
-      if (data.session) {
-        await requireDisplayNameOrContinue();
-        return;
-      }
-
-      setMessage("Check your email to confirm your account, then sign in.");
-      setMode("sign-in");
+      const { user } = await createUserWithEmailAndPassword(auth, email, password);
+      await updateProfile(user, { displayName: displayName.trim() });
+      requireDisplayNameOrContinue();
     } catch (err) {
       setError(err instanceof Error ? err.message : "Something went wrong. Please try again.");
     } finally {

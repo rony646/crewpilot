@@ -1,11 +1,10 @@
-import type { User } from "@supabase/supabase-js";
+import type { User } from "firebase/auth";
 
-const DISPLAY_NAME_KEY = "display_name";
 const MIN_DISPLAY_NAME_LENGTH = 2;
 const MAX_DISPLAY_NAME_LENGTH = 50;
 
 export function getDisplayName(user: User | null | undefined): string {
-  const value = user?.user_metadata?.[DISPLAY_NAME_KEY];
+  const value = user?.displayName;
   return typeof value === "string" ? value.trim() : "";
 }
 
@@ -25,10 +24,6 @@ export function validateDisplayName(value: string): string | null {
   }
 
   return null;
-}
-
-export function displayNameMetadata(value: string) {
-  return { [DISPLAY_NAME_KEY]: value.trim() };
 }
 
 /** Derive 1–2 letter initials from display name, then email, then fallback. */

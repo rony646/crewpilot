@@ -16,7 +16,7 @@ crewpilot/
 |---|---|
 | Backend | Python 3.12, FastAPI, CrewAI, uv |
 | Frontend | React, TypeScript, Vite |
-| Auth + DB | Supabase |
+| Auth + DB | Firebase (Auth + Firestore) |
 | Deployment | Backend on Render |
 
 ## Running locally
@@ -70,8 +70,16 @@ Required environment variables on Vercel (set before build — `VITE_*` vars are
 embedded at build time):
 
 - `VITE_API_URL` — backend API URL (the Render URL above)
-- `VITE_SUPABASE_URL` — Supabase project URL
-- `VITE_SUPABASE_PUBLISHABLE_KEY` — Supabase publishable/anon key
+- `VITE_FIREBASE_API_KEY` — Firebase web app API key
+- `VITE_FIREBASE_AUTH_DOMAIN` — Firebase auth domain
+- `VITE_FIREBASE_PROJECT_ID` — Firebase project ID
+- `VITE_FIREBASE_STORAGE_BUCKET` — Firebase storage bucket
+- `VITE_FIREBASE_MESSAGING_SENDER_ID` — Firebase messaging sender ID
+- `VITE_FIREBASE_APP_ID` — Firebase app ID
+- `VITE_FIREBASE_MEASUREMENT_ID` — Firebase measurement ID (optional)
+
+Copy Firestore security rules from `firebase/firestore.rules` into the Firebase
+console (Firestore → Rules) before using the app in production.
 
 > SPA routing (e.g. `/results/:id`, `/history`) is handled by
 > `frontend/vercel.json`, which rewrites all paths to `index.html` so deep
