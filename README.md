@@ -19,6 +19,18 @@ crewpilot/
 | Auth + DB | Firebase (Auth + Firestore) |
 | Deployment | Backend on Render |
 
+## Screenshots
+
+<img width="773" height="423" alt="Screenshot 2026-07-08 at 21 02 42" src="https://github.com/user-attachments/assets/86f677ee-f85d-48e2-8cdf-c531d3faeb71" />
+
+<hr>
+
+<img width="770" height="421" alt="Screenshot 2026-07-08 at 21 03 06" src="https://github.com/user-attachments/assets/2089d721-f421-4b6e-8fb6-ee76e19fbc50" />
+
+<hr>
+
+<img width="775" height="420" alt="Screenshot 2026-07-08 at 21 03 18" src="https://github.com/user-attachments/assets/a0934d82-d94a-4f17-bfaf-5066b925024e" />
+
 ## Running locally
 
 ### Backend
