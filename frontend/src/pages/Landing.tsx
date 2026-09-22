@@ -8,14 +8,11 @@ import { ExampleChips } from "@/components/landing/ExampleChips";
 
 export default function Landing() {
   const navigate = useNavigate();
-  // const startAnalysis = useAnalysisStore((state) => state.startAnalysis);
 
   const [idea, setIdea] = useState("");
 
   const handleSubmit = () => {
     if (!idea.trim()) return;
-    console.log("idea", idea);
-    // startAnalysis(idea.trim(), context.trim(), goal);
     navigate("/processing", { state: { idea: idea.trim() } });
   };
 
@@ -43,42 +40,8 @@ export default function Landing() {
             placeholder="Describe your idea..."
             className="min-h-[160px] text-lg"
           />
-          {/* 
-              <button
-                type="button"
-                onClick={() => setShowContext(!showContext)}
-                className="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors"
-              >
-                {showContext ? (
-                  <ChevronUp className="h-4 w-4" />
-                ) : (
-                  <ChevronDown className="h-4 w-4" />
-                )}
-                Additional context (optional)
-              </button> */}
-
-          {/* {showContext && (
-                <Textarea
-                  value={context}
-                  onChange={(e) => setContext(e.target.value)}
-                  placeholder="Add any constraints, preferences, or background information..."
-                  className="min-h-[100px]"
-                />
-              )} */}
 
           <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 ">
-            {/* <Select value={goal} onValueChange={(v) => setGoal(v as GoalType)}>
-                  <SelectTrigger className="w-full sm:w-48">
-                    <SelectValue placeholder="Select goal" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="full">Full Plan</SelectItem>
-                    <SelectItem value="product">Product Only</SelectItem>
-                    <SelectItem value="market">Market Only</SelectItem>
-                    <SelectItem value="tech">Tech Only</SelectItem>
-                  </SelectContent>
-                </Select> */}
-
             <Button
               variant="gradient"
               size="lg"
