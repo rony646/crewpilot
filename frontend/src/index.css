@@ -277,8 +277,55 @@ body {
   transform: rotateY(180deg);
 }
 
+/* Toast slide from the left */
+@keyframes toast-slide-in {
+  from {
+    transform: translateX(calc(-100% - 1rem));
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes toast-slide-out {
+  from {
+    transform: translateX(var(--radix-toast-swipe-end-x, 0));
+    opacity: 1;
+  }
+  to {
+    transform: translateX(calc(-100% - 1rem));
+    opacity: 0;
+  }
+}
+
+.toast-slide[data-state="open"] {
+  animation: toast-slide-in 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.toast-slide[data-state="closed"],
+.toast-slide[data-swipe="end"] {
+  animation: toast-slide-out 0.2s ease-in forwards;
+}
+
+.toast-slide[data-swipe="move"] {
+  transform: translateX(var(--radix-toast-swipe-move-x));
+}
+
+.toast-slide[data-swipe="cancel"] {
+  transform: translateX(0);
+  transition: transform 0.2s ease-out;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .auth-flip-inner {
     transition: none;
+  }
+
+  .toast-slide[data-state="open"],
+  .toast-slide[data-state="closed"],
+  .toast-slide[data-swipe="end"] {
+    animation: none;
   }
 }
