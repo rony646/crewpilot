@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Disallow: /history
+Disallow: /processing
+Disallow: /results
+
+Sitemap: https://crewpilot-nine.vercel.app/sitemap.xml

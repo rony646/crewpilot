@@ -9,7 +9,7 @@ import { getDisplayName, getUserInitials } from "@/lib/auth";
 
 export function Header() {
   const navigate = useNavigate();
-  const { user, signOut } = useAuth();
+  const { user, loading, signOut } = useAuth();
   const [loggingOut, setLoggingOut] = useState(false);
 
   const handleLogout = async () => {
@@ -29,7 +29,13 @@ export function Header() {
           <Logo />
         </Link>
 
-        <nav className="flex items-center gap-2">
+        <nav className="flex items-center gap-2" aria-label="Account">
+          {!loading && !user && (
+            <Button variant="ghost" size="sm" asChild>
+              <Link to="/login">Sign in</Link>
+            </Button>
+          )}
+
           {user && (
             <div
               className="flex h-8 w-8 items-center justify-center rounded-full bg-gradient-to-br from-primary to-accent text-xs font-medium text-white"

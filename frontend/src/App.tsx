@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { Outlet } from "react-router-dom";
 
 import { Header } from "@/components/layout/Header";
+import { PageMeta } from "@/components/seo/PageMeta";
 import { useAuth } from "@/hooks/useAuth";
 import { usePlanStore } from "@/store/planStore";
 
@@ -22,6 +23,7 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-background">
+      <PageMeta />
       <Header />
       <Outlet />
     </div>

@@ -8,6 +8,7 @@ import { Processing } from "@/pages/Processing";
 import { Results } from "@/pages/Results";
 import { History } from "@/pages/History";
 import { Login } from "./pages/Login";
+import { ForgotPassword } from "./pages/ForgotPassword";
 
 export const router = createBrowserRouter([
   {
@@ -16,11 +17,7 @@ export const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: (
-          <RequireAuth>
-            <Landing />
-          </RequireAuth>
-        ),
+        element: <Landing />,
       },
       {
         path: "processing",
@@ -51,6 +48,14 @@ export const router = createBrowserRouter([
         element: (
           <GuestOnly>
             <Login />
+          </GuestOnly>
+        ),
+      },
+      {
+        path: "forgot-password",
+        element: (
+          <GuestOnly>
+            <ForgotPassword />
           </GuestOnly>
         ),
       },
